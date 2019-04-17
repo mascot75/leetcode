@@ -20,11 +20,11 @@ public class CombinationSum {
     public List<List<Integer>> combinationSum(int[] candidates, int target) {
         List<List<Integer>> result = new ArrayList<>();
         Arrays.sort(candidates);
-        find(result, new ArrayList<>(), candidates, target, 0);
+        find1(result, new ArrayList<>(), candidates, target, 0);
         return result;
     }
 
-    private void find(List<List<Integer>> result, List<Integer> list, int[] candidates, int target, int number) {
+    private void find1(List<List<Integer>> result, List<Integer> list, int[] candidates, int target, int number) {
         if (target == 0) {
             result.add(list);
             return;
@@ -37,7 +37,30 @@ public class CombinationSum {
         for (int i = number; i < candidates.length && target >= candidates[i]; i++) {
             List<Integer> temp = new ArrayList<>(list);
             temp.add(candidates[i]);
-            find(result, temp, candidates, target - candidates[i], i);
+            find1(result, temp, candidates, target - candidates[i], i);
+        }
+    }
+
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(candidates);
+        find2(result, new ArrayList<>(), candidates, target, 0);
+        return result;
+    }
+
+    private void find2(List<List<Integer>> result, List<Integer> list, int[] candidates, int target, int number) {
+        if (target == 0) {
+            result.add(list);
+            return;
+        }
+
+        for (int i = number; i < candidates.length && target >= candidates[i]; i++) {
+            List<Integer> temp = new ArrayList<>(list);
+            temp.add(candidates[i]);
+            find2(result, temp, candidates, target - candidates[i], i + 1);
+            while (i < candidates.length - 1 && candidates[i] == candidates[i + 1]) {
+                i++;
+            }
         }
     }
 }
