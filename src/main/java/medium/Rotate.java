@@ -17,8 +17,8 @@ public class Rotate {
     }
 
     private void rotate(int[][] matrix, int index) {
-        int rotate = (matrix.length & 1) == 0 ? matrix.length >> 1 : matrix.length >> 1;
-        if (rotate <= index) {
+
+        if (matrix.length >> 1 <= index) {
             return;
         }
 
