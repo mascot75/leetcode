@@ -13,23 +13,14 @@ package medium;
  */
 public class Rotate {
     public void rotate(int[][] matrix) {
-        rotate(matrix, 0);
-    }
-
-    private void rotate(int[][] matrix, int index) {
-
-        if (matrix.length >> 1 <= index) {
-            return;
+        for (int i = 0; i < matrix.length >> 1; i++) {
+            for (int j = i; j < matrix.length - 1 - i; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[matrix.length - j - 1][i];
+                matrix[matrix.length - j - 1][i] = matrix[matrix.length - i - 1][matrix.length - j - 1];
+                matrix[matrix.length - i - 1][matrix.length - j - 1] = matrix[j][matrix.length - i - 1];
+                matrix[j][matrix.length - i - 1] = temp;
+            }
         }
-
-        for (int i = index; i < matrix.length - 1 - index; i++) {
-            int temp = matrix[index][i];
-            matrix[index][i] = matrix[matrix.length - i - 1][index];
-            matrix[matrix.length - i - 1][index] = matrix[matrix.length - index - 1][matrix.length - i - 1];
-            matrix[matrix.length - index - 1][matrix.length - i - 1] = matrix[i][matrix.length - index - 1];
-            matrix[i][matrix.length - index - 1] = temp;
-        }
-
-        rotate(matrix, index + 1);
     }
 }
