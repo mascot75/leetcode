@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import javax.swing.*;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.*;
 
 /**
@@ -24,7 +26,7 @@ public class RotateArrayTest {
     @Test
     public void rotate2() {
         int[] array = new int[]{-1, -100, 3, 99};
-        rotate.rotate(array, 3);
+        rotate.rotate(array, 2);
         assertArrayEquals(new int[]{3, 99, -1, -100}, array);
     }
 }

@@ -11,11 +11,9 @@ public class RotateArray {
 
         k = k % nums.length;
 
-        for (int i = 0; i < k; i++) {
-            int temp = nums[nums.length - 1];
-            System.arraycopy(nums, 0, nums, 1, nums.length - 1);
-            nums[0] = temp;
-        }
+        int[] array = new int[k];
+        System.arraycopy(nums, nums.length - k , array, 0, k);
+        System.arraycopy(nums, 0, nums, k, nums.length - k);
+        System.arraycopy(array, 0, nums, 0, k);
     }
-
 }
