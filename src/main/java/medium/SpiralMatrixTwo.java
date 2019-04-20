@@ -2,51 +2,35 @@ package medium;
 
 /**
  * 给定一个正整数 n，生成一个包含 1 到 n2 所有元素，且元素按顺时针顺序螺旋排列的正方形矩阵。
+ *
  * @author mascot
  * @date 2019/4/20 13:29
  */
 public class SpiralMatrixTwo {
     public int[][] generateMatrix(int n) {
-        if (n == 0) {
-            return new int[][]{};
-        }
-
-        int top = 0;
-        int bottom = n - 1;
-        int right = 0;
-        int left = n - 1;
 
         int[][] result = new int[n][n];
         int generate = 1;
-        while (top <= bottom && right <= left) {
-            int i = top;
-            int j = right - 1;
-            while (j < left) {
-                j++;
-                result[i][j] = generate++;
+        int index = 0;
+        while (generate <= n * n) {
+            for (int i = index; i < n - index; i++) {
+                result[index][i] = generate++;
             }
 
-            while (i < bottom) {
-                i++;
-                result[i][j] = generate++;
+            for (int i = index + 1; i < n - index; i++) {
+                result[i][n - index - 1] = generate++;
             }
 
-            while (j > right && top != bottom) {
-                j--;
-                result[i][j] = generate++;
+            for (int i = n - index - 2; i >= index; i--) {
+                result[n - index - 1][i] = generate++;
             }
 
-            while (i > top + 1 && right != left) {
-                i--;
-                result[i][j] = generate++;
+            for (int i = n - index - 2; i > index; i--) {
+                result[i][index] = generate++;
             }
 
-            top++;
-            bottom--;
-            right++;
-            left--;
+            index++;
         }
-
         return result;
     }
 }
