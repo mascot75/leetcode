@@ -14,14 +14,13 @@ public class UniquePaths {
 
     public int uniquePaths(int m, int n) {
 
-        int[] paths = new int[n];
-        paths[0] = 1;
-        for (int i = 0; i < m; i++) {
-            for (int j = 1; j < n; j++) {
-                paths[j] += paths[j - 1];
-            }
+        int totalStep = m + n - 2;
+        int step = m < n ? m - 1 : n - 1;
+        long result = 1;
+        for (int i = 1; i <= step; i++) {
+            result = result * (totalStep - i + 1) / i;
         }
 
-        return paths[n - 1];
+        return (int) result;
     }
 }
