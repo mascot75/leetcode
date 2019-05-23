@@ -2,7 +2,7 @@ package medium;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 /**
  * @author mascot
@@ -11,7 +11,6 @@ import static org.junit.Assert.*;
 public class UniqueBinarySearchTreesTest {
 
     private UniqueBinarySearchTrees trees = new UniqueBinarySearchTrees();
-
     @Test
     public void numTrees() {
         assertEquals(5, trees.numTrees(3));
