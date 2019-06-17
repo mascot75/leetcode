@@ -1,6 +1,7 @@
 package medium;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,5 +39,33 @@ public class Permutations {
         }
 
         return result;
+    }
+
+
+    public List<List<Integer>> permuteUnique(int[] nums) {
+        List<List<Integer>> result = new ArrayList<>();
+        Arrays.sort(nums);
+        int[] visited = new int[nums.length];
+        backtrack(result, nums, visited, new ArrayList<>());
+        return result;
+    }
+
+    private void backtrack(List<List<Integer>> result, int[] nums, int[] visited, ArrayList<Integer> temp) {
+        if (temp.size() == nums.length) {
+            result.add(new ArrayList<>(temp));
+            return;
+        }
+
+        for (int i = 0; i < nums.length; i++) {
+            if (visited[i] == 1 || (i > 0 && visited[i - 1] == 0 && nums[i - 1] == nums[i])) {
+                continue;
+            }
+
+            visited[i] = 1;
+            temp.add(nums[i]);
+            backtrack(result, nums, visited, temp);
+            temp.remove(temp.size() - 1);
+            visited[i] = 0;
+        }
     }
 }

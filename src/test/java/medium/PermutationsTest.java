@@ -38,4 +38,22 @@ public class PermutationsTest {
 
         assertThat(lists, is(permutations.permute(new int[]{1})));
     }
+
+    @Test(timeout = 1000)
+    public void permuteUnique() {
+        List<List<Integer>> lists = new ArrayList<>();
+        lists.add(Collections.singletonList(1));
+
+        assertThat(lists, is(permutations.permuteUnique(new int[]{1})));
+    }
+
+    @Test(timeout = 1000)
+    public void permuteUnique2() {
+        List<List<Integer>> lists = new ArrayList<>();
+        lists.add(Arrays.asList(1, 1, 2));
+        lists.add(Arrays.asList(1, 2, 1));
+        lists.add(Arrays.asList(2, 1, 1));
+
+        assertThat(lists, is(permutations.permuteUnique(new int[]{1, 1, 2})));
+    }
 }
