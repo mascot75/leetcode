@@ -14,7 +14,7 @@ public class PermutationSequenceTest {
 
     @Test
     public void getPermutation() {
-        assertEquals("213", sequence.getPermutation(3, 3));
+        assertEquals("213", sequence.getPermutation2(3, 3));
         assertEquals("2314", sequence.getPermutation(4, 9));
     }
 }

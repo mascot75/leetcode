@@ -46,4 +46,51 @@ public class PermutationSequence {
         }
         return result.toString();
     }
+
+    /**
+     * 回溯法
+     * @param n 给定的范围
+     * @param k 第 K 个数
+     * @return 第 k 全排列
+     */
+    public String getPermutation2(int n, int k) {
+        int[] help = new int[n];
+        help[0] = 1;
+        for (int i = 2; i <= n; i++) {
+            help[i - 1] = i * help[i - 2];
+        }
+        String result = "";
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = i + 1;
+        }
+        return back(result, nums, k, help);
+    }
+
+    private String back(String result, int[] nums, int k, int[] help) {
+        int left = nums.length - result.length();
+        if (left == 1) {
+            result += nums[findSmallest(nums, 1)];
+            return result;
+        }
+        int j = k / help[left - 2];
+        j = j + (k % help[left - 2] == 0 ? 0 : 1);
+        int i = findSmallest(nums, j);
+        result += nums[i];
+        nums[i] = Integer.MAX_VALUE;
+        return back(result, nums, k - (j - 1) * help[left - 2], help);
+    }
+
+    private int findSmallest(int[] nums, int j) {
+        int count = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != Integer.MAX_VALUE) {
+                count++;
+            }
+            if (j == count) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
