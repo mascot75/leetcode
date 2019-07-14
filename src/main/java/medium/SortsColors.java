@@ -10,6 +10,7 @@ package medium;
  * 注意:
  * 不能使用代码库中的排序函数来解决这道题。
  *
+ * @author mascot
  * @date 2019/7/14 13:25
  */
 public class SortsColors {
