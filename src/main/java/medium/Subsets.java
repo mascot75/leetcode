@@ -18,19 +18,19 @@ public class Subsets {
             return result;
         }
 
-        doIt(nums, result, new ArrayList<>(), 0);
+        fun(nums, result, new ArrayList<>(), 0);
         return result;
     }
 
-    private static void doIt(int[] nums, List<List<Integer>> result, List<Integer> list, int i) {
+    private static void fun(int[] nums, List<List<Integer>> result, List<Integer> list, int i) {
         if (i == nums.length) {
             result.add(list);
             return;
         }
         List<Integer> array = new ArrayList<>(list);
         array.add(nums[i]);
-        doIt(nums, result, list, i + 1);
-        doIt(nums, result, array, i + 1);
+        fun(nums, result, list, i + 1);
+        fun(nums, result, array, i + 1);
     }
 
     public List<List<Integer>> subsets(int[] nums) {
