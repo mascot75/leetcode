@@ -53,7 +53,7 @@ public class LinkedListCycle {
 }
 
 class ListNode {
-    private int val;
+    int val;
     ListNode next;
 
     ListNode(int x) {
